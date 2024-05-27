@@ -19,11 +19,18 @@ module "security_group" {
     all_cidr_block = var.all_cidr_block
 }
 
-#  module "ec2" {
-#     source = "./modules/ec2"
-#     security_group_id = module.vpc.sameep_sg
-#     subnet_id = module.vpc.sameep_terraform_subnet_1
-# }
+ module "ec2" {
+    source = "./modules/ec2"
+    ami = var.ami
+    instance_type = var.instance_type
+    key_name = var.key_name
+    security_group_id = module.security_group.security_group_id
+    sameep_terraform_subnet_1 = module.subnet.public_subnet_1
+    sameep_terraform_subnet_2 = module.subnet.public_subnet_2
+    sameep_terraform_subnet_private_1 = module.subnet.private_subnet_1
+    sameep_terraform_subnet_private_2 = module.subnet.private_subnet_2
+}
+
 
 # module "s3" {
 #     source = "./modules/s3"
