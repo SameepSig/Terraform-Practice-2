@@ -1,0 +1,51 @@
+resource "aws_subnet" "sameep_terraform_subnet_1" {
+  vpc_id     = var.vpc_id
+  cidr_block = var.subnet_cidr
+
+  tags = {
+    Name = "sameep_terraform_subnet_1"
+    silo = "intern2"
+    owner = "sameep.sigdel"
+    terraform = "true"
+    environment = "dev"
+  }
+}
+
+resource "aws_subnet" "sameep_terraform_subnet_public_2" {
+  vpc_id     = var.vpc_id
+  cidr_block = var.subnet_cidr_public_2
+
+  tags = {
+    Name = "sameep_terraform_subnet_public_2"
+    silo = "intern2"
+    owner = "sameep.sigdel"
+    terraform = "true"
+    environment = "dev"
+  }
+}
+
+resource "aws_subnet" "sameep_terraform_subnet_private_1" {
+  vpc_id     = var.vpc_id
+  cidr_block = var.subnet_cidr_private_1
+
+  tags = {
+    Name = "sameep_terraform_subnet_private_1"
+    silo = "intern2"
+    owner = "sameep.sigdel"
+    terraform = "true"
+    environment = "dev"
+  }
+}
+
+resource "aws_subnet" "sameep_terraform_subnet_private_2" {
+  vpc_id     = var.vpc_id
+  cidr_block = var.subnet_cidr_private_2
+
+  tags = {
+    Name = "sameep_terraform_subnet_private_2"
+    silo = "intern2"
+    owner = "sameep.sigdel"
+    terraform = "true"
+    environment = "dev"
+  }
+}
