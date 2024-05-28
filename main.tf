@@ -51,7 +51,12 @@ module "rt_association" {
     sameep_terraform_subnet_2 = module.subnet.public_subnet_2
 }
 
+module "template_files"{
+  source = "hashicorp/dir/template"
+  base_dir = "${path.module}/website"
+}
 
-# module "s3" {
-#     source = "./modules/s3"
-# }
+module "s3" {
+    source = "./modules/s3"
+    template_files = module.template_files.files
+}
