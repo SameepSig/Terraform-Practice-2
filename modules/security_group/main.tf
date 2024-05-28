@@ -35,3 +35,33 @@ resource "aws_security_group" "sameep_sg" {
     environment = "dev"
   }
 }
+
+resource "aws_security_group" "sameep_db_sg" {
+  name        = "sameep_db_sg_vpc_1_terraform"
+  description = "sameep aws db securitygroup built using terraform"
+  vpc_id      = var.vpc_id
+
+  ingress{
+    description = "sameep security group from terraform mysql"
+    cidr_blocks = [var.all_cidr_block]
+    from_port   = 3306
+    protocol = "tcp"
+    to_port     = 3306
+  }
+
+  egress{
+    description = "egress for all traffic"
+    cidr_blocks = [var.all_cidr_block]
+    from_port = 0
+    to_port = 0
+    protocol = -1
+  }
+
+  tags = {
+    Name = "sameep-aws-sg-terraform"
+    terraform = "true"
+    silo = "intern2"
+    owner = "sameep.sigdel"
+    environment = "dev"
+  }
+}

@@ -49,3 +49,15 @@ variable "key_name" {
     description = "default keypair"
     default = "Sameep-key-pair"
 }
+
+variable "availability_zone_1" {
+    description = "Availability zone for subnet"
+    default = "us-east-1a"
+    type = string
+}
+
+variable "availability_zone_2" {
+    description = "Availability zone for subnet"
+    default = "us-east-1b"
+    type = string
+}

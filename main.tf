@@ -10,6 +10,8 @@ module "subnet" {
     subnet_cidr_public_2 = var.subnet_cidr_public_2
     subnet_cidr_private_1 = var.subnet_cidr_private_1
     subnet_cidr_private_2 = var.subnet_cidr_private_2
+    availability_zone_1 = var.availability_zone_1
+    availability_zone_2 = var.availability_zone_2
     
 }
 
@@ -59,4 +61,11 @@ module "template_files"{
 module "s3" {
     source = "./modules/s3"
     template_files = module.template_files.files
+}
+
+module "rds" {
+    source = "./modules/rds"
+    db_security_group_id = module.security_group.db_security_group_id
+    sameep_terraform_subnet_private_1 = module.subnet.private_subnet_1
+    sameep_terraform_subnet_private_2 = module.subnet.private_subnet_2
 }
