@@ -11,7 +11,7 @@ resource "aws_db_subnet_group" "sameep_db_subnet_group" {
   }
 }
 
-resource "aws_db_instance" "sameep_private_" {
+resource "aws_db_instance" "sameep_private_db_1" {
   allocated_storage    = 10
   db_name              = "mydb"
   engine               = "mysql"
@@ -32,3 +32,23 @@ resource "aws_db_instance" "sameep_private_" {
     environment = "dev"
   }
 }
+
+# I think this is for read replica
+# resource "aws_db_instance" "sameep_private_db_standby_1" {
+#   allocated_storage = 10
+#   engine           = aws_db_instance.sameep_private_db_1.engine
+#   engine_version   = aws_db_instance.sameep_private_db_1.engine_version
+#   db_instance_class = aws_db_instance.sameep_private_db_1.db_instance_class
+
+#   replication_source_identifier = aws_db_instance.sameep_private_db_1.id
+#   vpc_security_group_ids = [var.db_security_group_id]
+
+#   tags = {
+#     Name = "sameep DB Standby"
+#     silo = "intern2"
+#     owner = "sameep.sigdel"
+#     terraform = "true"
+#     environment = "dev"
+#   }
+
+# }
